@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bedroom Cards - Test 1.1 & Test 1.2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=League+Spartan:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'League Spartan', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background-color: #F5F7FA;
+            color: #2e2e36;
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #AF7AC5 0%, #EC7063 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-family: 'Alata', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .header .personalized {
+            font-size: 16px;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        
+        .header .title {
+            font-family: 'Alata', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .header .divider {
+            width: 60px;
+            height: 3px;
+            background-color: #5DADE2;
+            margin: 20px auto;
+        }
+        
+        .header .tagline {
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 30px 20px;
+            background: white;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            min-width: 120px;
+        }
+        
+        .stat-card.gentle { background: #5DADE2; }
+        .stat-card.warming { background: #AF7AC5; }
+        .stat-card.steamy { background: #EC7063; }
+        .stat-card.fire { background: #922B21; }
+        
+        .stat-number {
+            font-family: 'Alata', sans-serif;
+            font-size: 48px;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Type distribution */
+        .type-stats {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #FFF5F7;
+        }
+        
+        .type-stats p {
+            color: #2e2e36;
+            font-size: 16px;
+        }
+        
+        /* Controls */
+        .controls {
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #E3E6F0;
+            border-radius: 30px;
+            font-family: inherit;
+            margin-bottom: 15px;
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: #AF7AC5;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #E3E6F0;
+            background: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        
+        .filter-btn:hover {
+            border-color: #AF7AC5;
+            color: #AF7AC5;
+        }
+        
+        .filter-btn.active {
+            background: #AF7AC5;
+            color: white;
+            border-color: #AF7AC5;
+        }
+        
+        .filter-btn.active.gentle { background: #5DADE2; border-color: #5DADE2; }
+        .filter-btn.active.warming { background: #AF7AC5; border-color: #AF7AC5; }
+        .filter-btn.active.steamy { background: #EC7063; border-color: #EC7063; }
+        .filter-btn.active.fire { background: #922B21; border-color: #922B21; }
+        
+        .type-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        /* Info section */
+        .info-section {
+            background: white;
+            margin: 20px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .info-section h2 {
+            font-family: 'Alata', sans-serif;
+            font-size: 28px;
+            color: #AF7AC5;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .info-card {
+            padding: 20px;
+            background: #F5F7FA;
+            border-radius: 12px;
+            border-left: 4px solid #AF7AC5;
+        }
+        
+        .info-card h4 {
+            color: #AF7AC5;
+            font-size: 18px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-family: 'Alata', sans-serif;
+        }
+        
+        .info-card p {
+            color: #2e2e36;
+            line-height: 1.5;
+        }
+        
+        /* Content warning box */
+        .content-warning {
+            background: #FFF5F7;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 3px solid #EC7063;
+        }
+        
+        .content-warning p {
+            color: #2e2e36;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* Cards grid */
+        .cards-container {
+            padding: 0 20px 40px;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .card-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .card-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        
+        .card-header {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .card-type-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .card-intensity {
+            font-size: 13px;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .card-question {
+            font-family: 'Alata', sans-serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2e2e36;
+            line-height: 1.3;
+        }
+        
+        .card-instructions {
+            background: #F5F7FA;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid #AF7AC5;
+        }
+        
+        .card-instructions h4 {
+            color: #2e2e36;
+            font-size: 14px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-family: 'Alata', sans-serif;
+            font-weight: 600;
+        }
+        
+        .card-instructions p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #2e2e36;
+            margin: 0;
+        }
+        
+        .card-tips {
+            background: #FFF5F7;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #2e2e36;
+            line-height: 1.5;
+        }
+        
+        .card-tips strong {
+            color: #EC7063;
+            font-weight: 600;
+        }
+        
+        /* Hidden class */
+        .hidden { display: none !important; }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2e2e36 0%, #121317 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            font-family: 'Alata', sans-serif;
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer p {
+            color: #FFF5F7;
+            font-size: 14px;
+        }
+        
+        @media (min-width: 768px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header .title { font-size: 36px; }
+            .stat-card { padding: 20px 30px; min-width: 100px; }
+            .stat-number { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>BEDROOM CONVERSATION & ADVENTURE CARDS</h1>
+        <p class="personalized">PERSONALIZED FOR Test 1.1 & Test 1.2</p>
+        <h2 class="title">YOUR 101<br>INTIMATE<br>ADVENTURES</h2>
+        <div class="divider"></div>
+        <p class="tagline">TALK • EXPLORE • CONNECT</p>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-card gentle">
+            <div class="stat-number">60</div>
+            <div class="stat-label">🌸 Sweet & Simple</div>
+        </div>
+        <div class="stat-card warming">
+            <div class="stat-number">35</div>
+            <div class="stat-label">🔥 Building Heat</div>
+        </div>
+        <div class="stat-card steamy">
+            <div class="stat-number">6</div>
+            <div class="stat-label">💥 Adventure Time</div>
+        </div>
+        <div class="stat-card fire">
+            <div class="stat-number">0</div>
+            <div class="stat-label">🌶️ Advanced Play</div>
+        </div>
+    </div>
+    
+    <div class="type-stats">
+        <p>💭 <strong>71</strong> Talk About It Cards • ✨ <strong>30</strong> Adventure Cards</p>
+    </div>
+    
+    <!-- Info Section -->
+    <div class="info-section">
+        <h2>Welcome to Your Collection!</h2>
+        
+        <div style="margin-bottom: 30px;">
+            <p style="color: #2e2e36; line-height: 1.6; margin-bottom: 15px;">Every card in your collection has been specially selected based on your unique preferences and comfort level. This isn't a one-size-fits-all approach – it's YOUR personalized journey to deeper intimacy.</p>
+            
+            <p style="color: #2e2e36; line-height: 1.6; margin-bottom: 10px;"><strong>Your collection includes:</strong></p>
+            <ul style="color: #2e2e36; line-height: 1.8; margin: 0 0 20px 20px;">
+                <li style="margin-bottom: 8px;"><strong>Talk About It Cards (💭):</strong> Thought-provoking questions designed to spark meaningful conversations about desires, dreams, boundaries, and everything in between. Perfect for date nights or quiet moments together.</li>
+                <li style="margin-bottom: 8px;"><strong>Adventure Cards (✨):</strong> Playful activities and experiences to explore together. Each adventure includes clear instructions and tips for making the most of your time together.</li>
+                <li><strong>Progressive Intensity:</strong> Start wherever feels comfortable and progress at your own pace. There's no rush – this is about enjoying the journey together.</li>
+            </ul>
+            
+            <div class="content-warning">
+                <p><strong>Content Warning:</strong> Depending on your quiz answers, some or many of the cards found below may include pretty spicy text (no images), some are NSFW, so please use discretion when opening.</p>
+            </div>
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h4>🌸 Gentle (Sweet & Simple)</h4>
+                <p>Perfect for starting your journey or when you want sweet, simple connection. These cards focus on emotional intimacy and tender moments.</p>
+            </div>
+            <div class="info-card">
+                <h4>🔥 Warming (Building Heat)</h4>
+                <p>Ready to turn up the heat a little? These cards introduce playful elements while maintaining comfort and connection.</p>
+            </div>
+            <div class="info-card">
+                <h4>💥 Steamy (Adventure Time)</h4>
+                <p>Time for adventure! These cards encourage exploration and trying new things together in a safe, loving environment.</p>
+            </div>
+            <div class="info-card">
+                <h4>🌶️ Fire (Advanced Play)</h4>
+                <p>For the adventurous couple ready to explore new frontiers. These cards push boundaries (respectfully!) and create unforgettable experiences.</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #F5F7FA; border-radius: 12px;">
+            <h4 style="color: #AF7AC5; margin-bottom: 10px; font-family: 'Alata', sans-serif;">💡 Pro Tips for Using Your Cards:</h4>
+            <ul style="color: #2e2e36; line-height: 1.8; margin: 0 0 0 20px;">
+                <li style="margin-bottom: 8px;">Set aside dedicated time without distractions</li>
+                <li style="margin-bottom: 8px;">Start with whatever intensity level feels right today</li>
+                <li style="margin-bottom: 8px;">There's no "right" way to answer or experience – follow your instincts</li>
+                <li style="margin-bottom: 8px;">Communication is key – check in with each other throughout</li>
+                <li>Remember: these cards are tools for connection, not tests to pass!</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Controls -->
+    <div class="controls">
+        <input type="text" class="search-bar" placeholder="Search cards by keyword..." id="searchBar">
+        
+        <div class="type-filters">
+            <button class="filter-btn active" data-filter="all-types" data-filter-type="type">All Cards (101)</button>
+            <button class="filter-btn" data-filter="Conversation" data-filter-type="type">💭 Talk About It (71)</button>
+            <button class="filter-btn" data-filter="Experience" data-filter-type="type">✨ Adventures (30)</button>
+        </div>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all" data-filter-type="intensity">All Intensities</button>
+            <button class="filter-btn" data-filter="Gentle" data-filter-type="intensity">🌸 Gentle (60)</button>
+            <button class="filter-btn" data-filter="Warming" data-filter-type="intensity">🔥 Warming (35)</button>
+            <button class="filter-btn" data-filter="Steamy" data-filter-type="intensity">💥 Steamy (6)</button>
+            <button class="filter-btn" data-filter="Fire" data-filter-type="intensity">🌶️ Fire (0)</button>
+        </div>
+    </div>
+    
+    <div class="cards-container">
+        <h2 id="collectionHeader" style="text-align: center; font-family: 'Alata', sans-serif; color: #2e2e36; font-size: 28px; margin: 40px 0 30px; text-transform: uppercase;">Your Complete Collection</h2>
+        <div class="cards-grid" id="cardsGrid"><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what's one intimate thing you've never told me?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What's one intimate thing you've never told me?</h3><div class="card-tips"><strong>💡 Tips:</strong> If you've never done a sexual health check together, book a joint appointment. Use it as a way to build trust and safety.</div></div></div><div class="card-item" data-intensity="Steamy" data-type="Experience" data-search="the teasing and denial game"><div class="card-header" style="background: #EC7063"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">💥 Adventure Time</span></div><div class="card-body"><h3 class="card-question">The Teasing and Denial Game</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>Explicit Content. The Teasing and Denial Game. Materials: Timer, restraints optional, strong communication. How to: Bring partner to edge of orgasm repeatedly without allowing release. Use hands, mouth, toys. Watch for signs - breathing, muscle tension. Back off just before climax. Wait for arousal to subside slightly, repeat. Aim for minimum 3 edges before allowing release. Safety: Respect limits, some find this frustrating not fun. Progression: Extend duration, add days-long denial. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Set a timer for the activity-knowing it's brief can make trying new things less stressful.</div></div></div><div class="card-item" data-intensity="Steamy" data-type="Conversation" data-search="how do you feel about swallowing?"><div class="card-header" style="background: #EC7063"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">💥 Adventure Time</span></div><div class="card-body"><h3 class="card-question">How do you feel about swallowing?</h3><div class="card-tips"><strong>💡 Tips:</strong> Describe the most romantic thing your partner has done. Talk about why it meant so much.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="how do you feel about making noise during sex?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">How do you feel about making noise during sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> Be specific about sounds you like or dislike. Share what helps you feel less self-conscious-music, laughter, or a dark room can help if you're shy.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="synchronized breathing exer"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">Synchronized Breathing Exer</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>Practice synchronized breathing for 5 minutes. Materials: Quiet space, comfortable positions, timer. How to: Sit facing each other, hands on hearts. Match inhales and exhales gradually. Count to 4 in, hold 4, out 4. Maintain soft eye contact. If minds wander, gently return focus. Safety: Don't force breath patterns that feel uncomfortable. Progression: Add touching foreheads, then full body contact while breathing together. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Sit close, set a timer, and try matching each other's breath. If you get giggly, embrace it! Discuss how this makes you feel connected or relaxed.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you feel about quickies?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you feel about quickies?</h3><div class="card-tips"><strong>💡 Tips:</strong> Describe a way you feel desired that doesn't involve touch-ask your partner to try it for you.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="3-minute scalp massage"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">3-Minute Scalp Massage</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>Exchange 3-minute scalp massages. Materials: Comfortable seating, timer, optional hair oil. How to: Sit behind partner. Start at temples with circular motions. Move to crown, then base of skull. Vary pressure - some love firm, others gentle. Include neck and ears. Focus on giving pleasure without expecting return. Switch after timer. Safety: Check pressure preferences, avoid pulling hair. Progression: Extend time, add shoulder massage, try while partner self-pleasures. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Pick a lighthearted secret or confession to share first. Set a rule: no judging, just listening.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you feel about sex during illness?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you feel about sex during illness?</h3><div class="card-tips"><strong>💡 Tips:</strong> Talk about what aftercare means to you-what helps you feel close and secure after intimacy?</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's your favorite non-sexual touch?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's your favorite non-sexual touch?</h3><div class="card-tips"><strong>💡 Tips:</strong> Give a demonstration of your favorite touch-hug, back rub, hand-hold, etc. Explain what it means to you and when you like to receive it most.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Experience" data-search="the temperature play introduction"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">The Temperature Play Introduction</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Temperature Play Introduction. Materials: Ice cubes, warm washcloths, bowl of warm water, towels. How to: Blindfold receiver for enhanced sensation. Alternate between ice and warmth on different body parts. Trace ice along spine, follow with warm cloth. Try ice on nipples, warm breath after. Monitor reactions closely. Safety: Never extreme temperatures, test on yourself first, avoid genitals initially. Progression: Add more contrasts, try during oral sex. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Make a mini-celebration for the next time you connect-plan a fun snack, a movie, or a walk after.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what makes you feel most connected to me?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What makes you feel most connected to me?</h3><div class="card-tips"><strong>💡 Tips:</strong> Discuss the difference between fantasy and reality-what's fun to imagine versus what you'd actually try.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the candlelight ambiance night"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Candlelight Ambiance Night</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Candlelight Ambiance Night. Materials: Various candles, fireproof surfaces, romantic music, safety items. How to: Transform bedroom with only candlelight. Use various heights, scents. Create pathway to bed. Undress each other by flickering light. Notice how shadows change bodies. Move slowly, savoring visual beauty. Try wax play if interested (proper candles only). Safety: Never leave unattended, keep water nearby, avoid flammable items. Progression: Add massage, temperature play, sensual dancing. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Before starting, set up anything you'll need-lube, pillows, towels-so you can relax and enjoy the activity.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what compliment about your sexuality would mean most?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What compliment about your sexuality would mean most?</h3><div class="card-tips"><strong>💡 Tips:</strong> If either of you struggles with body confidence, agree to focus on what you appreciate about each other.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="how do you feel about role-playing?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">How do you feel about role-playing?</h3><div class="card-tips"><strong>💡 Tips:</strong> If discussing this topic feels tough, schedule it for a relaxed, private moment with no distractions.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the spooning sex position"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Spooning Sex Position</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Spooning Sex Position. Materials: Comfortable bed, possibly lube, patience for angles. How to: Both lie on sides, back to chest. Rear partner enters from behind. Front partner adjusts top leg for access. Allows for neck kissing, breast play, clitoral stimulation. Go slow - deep penetration takes adjustment. Perfect for lazy mornings, pregnancy, size differences. Safety: Communication about depth essential. Progression: Try variations with leg positions, add vibrators. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Plan a surprise for your partner-a new outfit, treat, or activity-then talk about how it felt to give or receive.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="how do you want to be seduced?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">How do you want to be seduced?</h3><div class="card-tips"><strong>💡 Tips:</strong> For sensual baths or showers, add bubbles, music, and dim lighting to create a spa-like feel.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Experience" data-search="the ice cube adventure"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">The Ice Cube Adventure</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Ice Cube Adventure. Materials: Ice cubes, towels, warm water bowl, open mind. How to: Partner lies naked. Hold ice cube in mouth, trace along their body. Follow ice path with warm tongue. Try holding ice against nipples, then warm with mouth. Drip ice water down spine. For brave souls, brief genital contact. Watch reactions closely. Safety: Never insert ice internally, limit genital contact to seconds. Progression: Combine with blindfold, try during oral sex. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Agree on a word or gesture to pause or stop the activity if needed.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what makes you feel sexiest?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What makes you feel sexiest?</h3><div class="card-tips"><strong>💡 Tips:</strong> Write a silly, sexy, or romantic note for your partner and hide it somewhere for them to find.</div></div></div><div class="card-item" data-intensity="Steamy" data-type="Experience" data-search="the sensory deprivation experience"><div class="card-header" style="background: #EC7063"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">💥 Adventure Time</span></div><div class="card-body"><h3 class="card-question">The Sensory Deprivation Experience</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>Explicit Content. The Sensory Deprivation Experience. Materials: Blindfold, earplugs/headphones, restraints optional, trust. How to: Remove one or more senses systematically. Start with blindfold. Add noise-canceling headphones with white noise. Restrain hands if desired. Focus entirely on touch, taste, smell. Giver varies sensations unpredictably. Use different textures, temperatures, pressures. Safety: Never leave alone, establish non-verbal safe signals. Progression: Remove more senses, extend duration, add edging. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Discuss one thing you'd both like to improve or explore together-make a game plan.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what turns you off most during sex?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What turns you off most during sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> Choose a romantic or sexy playlist together. If you don't know where to start, try 'slow jams' or 'sensual jazz' on Spotify.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Experience" data-search="the sensual shower experience"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">The Sensual Shower Experience</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Sensual Shower Experience. Materials: Non-slip mat, waterproof lube, adjustable shower head, time. How to: Start with washing each other slowly - shampoo scalp massage, soap every curve. Let water temperature enhance sensation. Try different spray settings on sensitive areas. Press against cool tiles. Use waterproof lube for any penetration. Safety: Ensure stable footing always, check water temperature, avoid soap as lube. Progression: Add shower toys, try positions carefully. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Ask what you used to do for fun or intimacy that you've stopped. Would you want to bring any back?</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what would make our sex life better?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What would make our sex life better?</h3><div class="card-tips"><strong>💡 Tips:</strong> Try the activity with the lights low or using a soft scarf as a blindfold to heighten other senses.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Experience" data-search="the erogenous zone mapping"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">The Erogenous Zone Mapping</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Erogenous Zone Mapping. Materials: Body oil, 60 minutes, exploration mindset, notepad. How to: Partner lies naked. Systematically explore their entire body with varied touches - light, firm, scratching, kissing. Note responses to each area. Try unexpected zones: inner elbow, hip bones, behind knees. Rate sensitivity 1-10. Create actual map drawing afterward. Safety: Respect boundaries, avoid overstimulation. Progression: Use map for targeted foreplay, combine highly sensitive zones. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Share your first crush or moment of attraction. Let your partner guess before you reveal it.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what role does fantasy play in your arousal?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What role does fantasy play in your arousal?</h3><div class="card-tips"><strong>💡 Tips:</strong> Ask, 'What would help you feel more adventurous in our relationship?' and brainstorm ideas together.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Experience" data-search="the blindfold trust exercise"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">The Blindfold Trust Exercise</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Blindfold Trust Exercise. Materials: Soft blindfold, various textures/items, safe space. How to: Blindfold receiver. Guide them to lie comfortably. Use various items to create sensations - silk scarves, ice, warm oil, your breath. Narrate some actions, surprise with others. Include non-sexual touches to build trust. Remove blindfold periodically to reconnect visually. Safety: Establish clear verbal cues, remove if anxious. Progression: Extend duration, add restraints, include sexual touch. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Swap answers and see if you can guess each other's preferences or reasons for your choices.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="how comfortable are you with dirty talk?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">How comfortable are you with dirty talk?</h3><div class="card-tips"><strong>💡 Tips:</strong> Notice any habits or routines that make you less interested in sex-talk about how you could change them together.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Experience" data-search="the body language reading exercise"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">The Body Language Reading Exercise</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Body Language Reading Exercise. Materials: Comfortable space, 20 minutes uninterrupted time. How to: Sit facing each other. Partner A expresses different emotions/desires through body language only - no words. Partner B interprets and checks accuracy. Switch roles. Focus on subtle cues: breathing changes, muscle tension, eye dilation. Safety: Respect discovered triggers. Progression: Practice during daily life to improve intuitive connection. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Practice expressing different feelings or desires without words. The other person guesses what's being communicated, then you switch. Debrief together: what was easy, what was hard, and what felt best?</div></div></div><div class="card-item" data-intensity="Steamy" data-type="Conversation" data-search="how do you feel about degradation play?"><div class="card-header" style="background: #EC7063"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">💥 Adventure Time</span></div><div class="card-body"><h3 class="card-question">How do you feel about degradation play?</h3><div class="card-tips"><strong>💡 Tips:</strong> Before trying edging or tease/denial, read a beginner's guide online for best practices and consent tips.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Experience" data-search="partner pleasure map"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">Partner Pleasure Map</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>Create a pleasure map of your partner's face. Materials: Soft lighting, 30 minutes, gentle touch items. How to: Partner lies comfortably, eyes closed. Use fingertips, lips, breath to explore every inch of face. Note responses - gasps, shivers, smiles. Try temples, earlobes, jawline, neck transition. Vary pressure and temperature. Map sensitive spots mentally. Safety: Avoid eye area, respect ticklish zones. Progression: Expand mapping to full body over multiple sessions. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Use a blindfold, feather, or just your fingertips. Gently explore and ask your partner to rate sensations from 1-10. Write down favorite spots for future reference. Keep the mood light and playful.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="how do you feel about trying viagra/aids?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">How do you feel about trying viagra/aids?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share your favorite movie scene that inspires you romantically. Recreate a (PG) version together.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how does stress affect your libido?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How does stress affect your libido?</h3><div class="card-tips"><strong>💡 Tips:</strong> List one belief about intimacy you absorbed from family or media, and say if it helps or hurts your connection now.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the mirror game - copy each other's movements"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Mirror Game - Copy Each Other's Movements</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Mirror Game - Copy Each Other's Movements. Materials: Space to move, optional mirror, playful attitude. How to: Stand facing each other. One leads slow movements - hands, hips, expressions. Other copies exactly. Start with simple gestures, add sensual movements. Touch yourself as they mirror. Make eye contact throughout. Switch leader every few minutes. Safety: Move within physical limits. Progression: Add undressing, self-touch, move to bed continuing the mirroring dance. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Go with your initial answer, even if you're unsure. Use this as a starting point for future discussions.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="how do you feel about multiple orgasms?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">How do you feel about multiple orgasms?</h3><div class="card-tips"><strong>💡 Tips:</strong> Celebrate your effort, not just the outcome-growth comes from trying, not just succeeding.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Experience" data-search="the yes/no/maybe list exercise"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">The Yes/No/Maybe List Exercise</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Yes/No/Maybe List Exercise. Materials: Comprehensive list of acts, private time, honest communication. How to: Find detailed list online covering various intimate acts. Separately mark each as Yes (interested), No (not interested), or Maybe (curious but unsure). Compare lists focusing on mutual Yes items first. Discuss Maybe items without pressure. Respect all No items completely. Safety: No judgment allowed, lists can change over time. Progression: Revisit quarterly, explore Yes items gradually. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Write your turn-ons separately and then reveal them together, one by one.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you prefer to reconnect after an argument?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you prefer to reconnect after an argument?</h3><div class="card-tips"><strong>💡 Tips:</strong> Reflect on a time when sex felt extra meaningful. What made it stand out from the rest?</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the kegel exercise challenge"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Kegel Exercise Challenge</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Kegel Exercise Challenge. Materials: Comfortable position, focus, consistency. How to: Both partners practice kegel exercises. Contract pelvic floor muscles for 5 seconds, release for 5. Repeat 10 times. Try quick pulses, long holds. During sex, squeeze during penetration. Men can practice stopping urine mid-stream to identify muscles. Women can use fingers to feel contractions. Safety: Don't overdo, empty bladder first. Progression: Increase hold time, practice during various positions. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Talk about what helps you feel secure if you get self-conscious during intimacy.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's one thing about sex that you're curious about but have never asked?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's one thing about sex that you're curious about but have never asked?</h3><div class="card-tips"><strong>💡 Tips:</strong> Think of a question you've honestly held back, even if it feels awkward. Set a timer for each of you to share, and agree not to judge or rush the answers.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Experience" data-search="the edible body paint experience"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">The Edible Body Paint Experience</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Edible Body Paint Experience. Materials: Edible body paints, towels, playful attitude, shower access. How to: Lay towels on bed. Take turns painting designs on each other - words, arrows, hearts. Focus on non-genital areas first. Lick off creations slowly. Try blindfolded painting. Write desires or compliments. Get messy without worry. Safety: Check ingredients for allergies, avoid sugar near genitals. Progression: Combine with role play, use during oral sex creatively. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> After the activity, talk about what went well and what you might tweak next time.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="how important is simultaneous orgasm to you?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">How important is simultaneous orgasm to you?</h3><div class="card-tips"><strong>💡 Tips:</strong> If talking about sexual health is uncomfortable, set a time and stick to it-use guides from reputable sites if needed.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do we incorporate faith into intimacy?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do we incorporate faith into intimacy?</h3><div class="card-tips"><strong>💡 Tips:</strong> Talk about the last time you felt out of sync-what was going on, and how did you reconnect?</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the desire inventory exercise"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Desire Inventory Exercise</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Desire Inventory Exercise. Materials: Journal, private time, honest mindset. How to: Separately list your top 10 desires, fantasies, and curiosities. Include physical acts, emotional needs, and scenarios. Share lists in safe space. Discuss without judgment - just listen and learn. Note overlaps and differences. Safety: No pressure to act on anything listed. Progression: Update lists quarterly as desires evolve. Use as roadmap for exploration. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Write lists privately first, then share only what you feel safe revealing. If some items make you nervous, explain why-use the list as a starting point, not a commitment.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how important is foreplay to you?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How important is foreplay to you?</h3><div class="card-tips"><strong>💡 Tips:</strong> For any explicit content, set clear boundaries and language before you start.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you feel about period sex?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you feel about period sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share how you like to communicate during intimacy-talking, gestures, or just eye contact. Test out one new way together.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the five senses check-in"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Five Senses Check-In</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Five Senses Check-In activity. Materials: Comfortable quiet space, various textures (silk, feather, ice), scented oils, soft music, flavored items. How to: Take turns exploring each sense for 3 minutes. Start with sound - whisper, breathe, moan softly. Move to touch with different textures. Try tastes, scents, and visual elements. Safety: Avoid allergens, test temperatures first. Progression: Begin with one sense per session, combine as comfort grows. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Choose one sense at a time. Bring props-like scented lotion, soft fabric, or music. Take turns describing what you enjoy and what feels less comfortable. Pause if either person feels overwhelmed.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's your favorite aftercare activity?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's your favorite aftercare activity?</h3><div class="card-tips"><strong>💡 Tips:</strong> If you've never tried sensual photography, start with just one candid shot. Respect each other's comfort and privacy.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the draw on my back game"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Draw On My Back Game</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Draw On My Back Game. Materials: Just yourselves, playful mood, imagination. How to: Partner lies on stomach or sits. Draw letters, words, or pictures on their back with finger. They guess what you drew. Start simple - single letters. Progress to words, then dirty messages or desires. Make it sensual with varying pressure. Include neck, arms. Guess correctly = reward kiss. Safety: Gentle pressure only, respect ticklish spots. Progression: Draw sexual positions to try, full body drawing. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Try the activity when you're both less stressed, like a weekend or after a nap.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="how do you feel about bdsm elements?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">How do you feel about BDSM elements?</h3><div class="card-tips"><strong>💡 Tips:</strong> If one of you feels more adventurous, agree on a code word to pause if it gets overwhelming.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Experience" data-search="the strip tease practice"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">The Strip Tease Practice</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Strip Tease Practice. Materials: Music playlist, outfit with layers, confidence, dim lighting. How to: Choose 2-3 songs building intensity. Start fully dressed. Move to music feeling your body. Remove items slowly - tease before reveal. Use furniture, walls. Make eye contact. Touch yourself while dancing. Partner watches without touching until invited. Safety: Move within comfort zone, no acrobatic requirements. Progression: Add costumes, role play, mutual strip teases. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Make up a funny or meaningful prize for completing the activity-winner's choice on the next date night!</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's your favorite way to be kissed?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's your favorite way to be kissed?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share a moment when you truly felt seen and valued by your partner-describe why it stood out.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what's your biggest turn-on?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What's your biggest turn-on?</h3><div class="card-tips"><strong>💡 Tips:</strong> If either of you feels uncomfortable, talk about it right away-never push through real discomfort.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the annual intimacy vision board"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Annual Intimacy Vision Board</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Annual Intimacy Vision Board. Materials: Magazines, board, glue, private time, honesty. How to: Set aside few hours annually. Cut out images, words representing intimate desires for coming year. Include positions, toys, experiences, emotions wanted. Share selections while creating. Display privately as reminder. Review quarterly. Celebrate achievements. Safety: No judgment zone, dreams welcome. Progression: Monthly mini-boards, photo versions, digital boards. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Reflect on how this card made you feel and what you'd want to try next time-use it as a launching point.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you want to grow sexually this year?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you want to grow sexually this year?</h3><div class="card-tips"><strong>💡 Tips:</strong> Try a new soundtrack-search for 'bedroom playlist' or 'romantic instrumentals' and see what works for you both.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the tantric eye gazing"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Tantric Eye Gazing</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Tantric Eye Gazing. Materials: Comfortable seating, soft lighting, timer, spiritual openness. How to: Sit cross-legged facing each other, knees touching. Set timer for 5 minutes initially. Maintain eye contact without talking. Breathe naturally. Notice urges to look away, laugh, cry - allow all emotions. See your partner's soul. Touch hands if desired. Safety: Blink normally, take breaks if overwhelming. Progression: Extend time, try during intercourse, add synchronized breathing. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> If talking about past partners or experiences is sensitive, agree on boundaries first. Honesty is important, but comfort comes first.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="how do you feel about outdoor sex?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">How do you feel about outdoor sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> Decide together if you want to stick with the familiar or try something new. No shaming if you're happy with your usual routine.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the feather touch exploration"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Feather Touch Exploration</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Feather Touch Exploration. Materials: Feathers or light fabric, 20 minutes, patience. How to: Receiver lies naked, relaxed. Giver uses feather/fabric to trace patterns everywhere except genitals initially. Barely-there touches along arms, sides, inner thighs. Watch for goosebumps, breath changes. No rushing to firmer touch. Focus on building desperate anticipation. Safety: Check for ticklish spots to avoid. Progression: Combine with blindfold, add breath work, edge closer to erogenous zones. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Name a spot you've always wanted to try-discuss what makes it appealing or intimidating.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's your favorite part of my body?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's your favorite part of my body?</h3><div class="card-tips"><strong>💡 Tips:</strong> If an activity is totally new, search for beginner guides or how-to videos together-choose only sources you both trust.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the missionary variations"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Missionary Variations</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Missionary Variations. Materials: Pillows for positioning, adventurous mindset. How to: Start classic missionary. Try: legs on shoulders for depth, ankles by ears for intensity, one leg up for angle change, knees to chest for G-spot, wide legs for grinding. Coital alignment technique for clitoral stimulation. Add twists, eye contact, speed changes. Safety: Support lower back, communicate about depth. Progression: Mix variations in one session, add toys. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> If you get distracted or giggly, roll with it. Laughter is a sign of safety, not failure.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how important is emotional connection for arousal?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How important is emotional connection for arousal?</h3><div class="card-tips"><strong>💡 Tips:</strong> If one person is shy, practice paying compliments out loud. Focus on real traits, not just appearance.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the massage train activity"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Massage Train Activity</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Massage Train Activity. Materials: Massage oil, towels, 30 minutes, giving mindset. How to: Both sit facing same direction. Back person massages front person's shoulders while receiving foot massage. Focus on giving and receiving simultaneously. Switch positions halfway. Try various pressures, strokes. Include scalp, hands. No genital focus - this is about full body care. Safety: Check pressure preferences, avoid spine pounding. Progression: Make weekly ritual, add aromatherapy. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Let the less-experienced or less-dominant partner lead this activity for a change.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what's one thing you've always wanted to try?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What's one thing you've always wanted to try?</h3><div class="card-tips"><strong>💡 Tips:</strong> Invent a new 'inside joke' or code word for this card-use it to spark future fun.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the lube exploration night"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Lube Exploration Night</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Lube Exploration Night. Materials: Various lube types - water, silicone, oil, hybrid, flavored. How to: Test different lubes on hands first. Compare longevity, feel, taste. Try each during different acts. Water-based for toys, silicone for shower/long sessions, oil for massage. Note favorites. Experiment with warming, cooling varieties. Safety: Check ingredients for allergies, avoid oil with condoms. Progression: Find perfect lube for each activity, try CBD varieties. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Switch up your typical environment-change lighting, music, or setting to reset your routine.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what sexual health topics should we discuss?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What sexual health topics should we discuss?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share a quirky or weird turn-on you've never mentioned before.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what type of porn (if any) appeals to you?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What type of porn (if any) appeals to you?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share a fantasy with no pressure to act on it-just talk about what draws you to it.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the slow motion challenge"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Slow Motion Challenge</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Slow Motion Challenge. Materials: Timer, comfortable space, patience. How to: Choose any intimate act - kissing, undressing, touching. Perform at 1/4 normal speed. Every movement deliberate and mindful. Notice details usually missed - breath catching, muscle tremors, temperature changes. No rushing to next step. Safety: Communicate if too frustrating. Progression: Start with 5 minutes, extend as patience grows. Try during penetration for intense connection. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Start with one positive comment about your partner before discussing any changes you'd like to see in your intimacy.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what sex position do you fantasize about but haven't tried?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What sex position do you fantasize about but haven't tried?</h3><div class="card-tips"><strong>💡 Tips:</strong> List activities you both consider foreplay. Compare lists and try something new together next time.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's your favorite intimate texture?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's your favorite intimate texture?</h3><div class="card-tips"><strong>💡 Tips:</strong> After trying something new, rate your experience and talk about what you'd tweak next time.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the breathing together exercise"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Breathing Together Exercise</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Breathing Together Exercise. Materials: Quiet space, comfort items, 15 minutes minimum. How to: Lie in spooning position, back to chest. Back partner places hand on front's belly. Sync breathing - feel rise and fall together. After 5 minutes, turn face-to-face, maintain breath sync with eye contact. Place hands on each other's hearts. Breathe love in, stress out. Safety: Don't hyperventilate, break if dizzy. Progression: Add gentle rocking, genital breathing, energy visualization. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> Let each person answer fully before discussing overlaps or differences.</div></div></div><div class="card-item" data-intensity="Steamy" data-type="Conversation" data-search="how do you feel about being watched during solo play?"><div class="card-header" style="background: #EC7063"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">💥 Adventure Time</span></div><div class="card-body"><h3 class="card-question">How do you feel about being watched during solo play?</h3><div class="card-tips"><strong>💡 Tips:</strong> If you schedule intimacy, make it playful-use a funny code word or a special reminder.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Experience" data-search="the naked cuddling session"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">✨ ADVENTURE</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">The Naked Cuddling Session</h3><div class="card-instructions"><h4>How to Experience This Adventure</h4><p>The Naked Cuddling Session. Materials: Comfortable space, soft blankets, 30+ minutes, no agenda. How to: Both get completely naked. Focus only on holding, caressing, being present. No genital stimulation goal. Try different positions - spooning, facing, one head on chest. Synchronize breathing. Light touches on back, arms, hair. Share what feels comforting. Safety: Room temperature comfortable, respect if arousal happens naturally. Progression: Make regular practice, morning or evening ritual. If you need specialty items, check Etsy, Amazon, or ask ChatGPT for DIY ideas, plans, or sourcing tips.</p></div><div class="card-tips"><strong>💡 Tips:</strong> If either of you feels awkward, call it out and laugh-fun beats perfection.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what intimate act makes you feel closest to me?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What intimate act makes you feel closest to me?</h3><div class="card-tips"><strong>💡 Tips:</strong> Try an activity outside your comfort zone, but agree you can stop at any point, no explanation needed.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's your ideal frequency for sex?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's your ideal frequency for sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> Swap ideas for aftercare or what you want right after intimacy-snuggling, snacks, talking, or alone time.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do medications affect your desire?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do medications affect your desire?</h3><div class="card-tips"><strong>💡 Tips:</strong> Pick a playful challenge-see who can come up with the silliest or sweetest compliment.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what's your favorite sexy surprise?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What's your favorite sexy surprise?</h3><div class="card-tips"><strong>💡 Tips:</strong> Pick a 'wild card' from the deck and commit to doing it, or swapping it for one you both want.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's one sexual skill you'd like to learn?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's one sexual skill you'd like to learn?</h3><div class="card-tips"><strong>💡 Tips:</strong> List what feels safe to try, not just what's off limits. Try one small new thing together.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you handle rejection?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you handle rejection?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share a way you like to end an intimate night-cuddling, talking, or planning your next date.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you prefer to initiate sex?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you prefer to initiate sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> Start with a single boundary each, then build trust by discussing more over time.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how important is variety in our sex life?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How important is variety in our sex life?</h3><div class="card-tips"><strong>💡 Tips:</strong> Write your own 'rules' for this card-set expectations, time limits, or silly consequences to make it yours.</div></div></div><div class="card-item" data-intensity="Steamy" data-type="Conversation" data-search="how do you feel about using mirrors during sex?"><div class="card-header" style="background: #EC7063"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">💥 Adventure Time</span></div><div class="card-body"><h3 class="card-question">How do you feel about using mirrors during sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share a time you felt truly desired-what happened, and how did it make you feel?</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you define good sex?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you define good sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> Describe your definition, then ask your partner how theirs compares. Discuss any surprises or differences without trying to 'fix' them right away.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what myths about sex did you believe growing up?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What myths about sex did you believe growing up?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share a non-sexual act of intimacy you find meaningful-like making coffee or holding hands. Discuss ways to add more of these small connections to daily life.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what's one thing i do that always turns you on?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What's one thing I do that always turns you on?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share your favorite memory from your intimate life as a couple. See what details your partner remembers differently.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="how do you feel about anal play?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">How do you feel about anal play?</h3><div class="card-tips"><strong>💡 Tips:</strong> Add candles, music, or favorite snacks to set the mood-these small changes help shift gears.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do our energy levels sync for intimacy?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do our energy levels sync for intimacy?</h3><div class="card-tips"><strong>💡 Tips:</strong> Discuss any words or phrases that totally kill the mood-agree to avoid them.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what words turn you on most?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What words turn you on most?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share a time when you felt awkward during intimacy. Laugh about it and brainstorm what you could do differently next time.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what time of day do you feel most interested in intimacy?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What time of day do you feel most interested in intimacy?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share your real answer, even if it feels inconvenient. Compare your best times and brainstorm workarounds (like a weekend 'date morning' or quick connection when schedules clash).</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what does good aftercare look like to you?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What does good aftercare look like to you?</h3><div class="card-tips"><strong>💡 Tips:</strong> If a position isn't working, try adjusting angles, pillows, or location-sometimes a small change makes all the difference.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you feel about sex during pregnancy?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you feel about sex during pregnancy?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share your biggest fear about being vulnerable in the bedroom, then reassure each other it's normal to be nervous.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's one boundary you've been afraid to express?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's one boundary you've been afraid to express?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share how you feel about toys-curious, shy, excited, or hesitant. No wrong answers.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what helps you get in the mood?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What helps you get in the mood?</h3><div class="card-tips"><strong>💡 Tips:</strong> If you feel silly, call it out-then try anyway. New experiences often start awkward and end up fun.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's your biggest body insecurity?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's your biggest body insecurity?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share how you want to be invited to intimacy-words, touches, or actions that work for you.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you feel about sex toys?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you feel about sex toys?</h3><div class="card-tips"><strong>💡 Tips:</strong> During the activity, use a thumbs-up, hand squeeze, or agreed word to check comfort as you go.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you feel about morning sex?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you feel about morning sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> If strong feelings come up, pause and talk before continuing. Safety and comfort matter more than finishing.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what childhood messages about sex affect you still?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What childhood messages about sex affect you still?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share the most memorable compliment you've received during intimacy. Return the favor.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what do you need more of in our sex life?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What do you need more of in our sex life?</h3><div class="card-tips"><strong>💡 Tips:</strong> If either of you feels pressure, pause and reset. Intimacy is about connection, not perfection.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what makes you feel most loved during sex?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What makes you feel most loved during sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> Choose three words that describe your ideal intimate relationship and explain why.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's your favorite memory of us being intimate?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's your favorite memory of us being intimate?</h3><div class="card-tips"><strong>💡 Tips:</strong> Test different times for connection-track what feels best and most natural, then plan for those moments.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how do you feel about scheduling sex?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How do you feel about scheduling sex?</h3><div class="card-tips"><strong>💡 Tips:</strong> Discuss your relationship with body image-share what you like about your body and what you struggle with.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's your biggest fear about trying new things?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's your biggest fear about trying new things?</h3><div class="card-tips"><strong>💡 Tips:</strong> Speak up kindly if something doesn't work for you-this builds trust for next time.</div></div></div><div class="card-item" data-intensity="Warming" data-type="Conversation" data-search="what do you think about during masturbation?"><div class="card-header" style="background: #AF7AC5"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🔥 Building Heat</span></div><div class="card-body"><h3 class="card-question">What do you think about during masturbation?</h3><div class="card-tips"><strong>💡 Tips:</strong> Share a song lyric or quote that inspires you romantically-explain what it means to you.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="what's your favorite type of foreplay that doesn't involve genitals?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">What's your favorite type of foreplay that doesn't involve genitals?</h3><div class="card-tips"><strong>💡 Tips:</strong> If discussing fantasies makes you nervous, agree that listening doesn't mean agreeing to act them out.</div></div></div><div class="card-item" data-intensity="Gentle" data-type="Conversation" data-search="how important is orgasm to your satisfaction?"><div class="card-header" style="background: #5DADE2"><span class="card-type-label">💭 TALK ABOUT IT</span><span class="card-intensity">🌸 Sweet & Simple</span></div><div class="card-body"><h3 class="card-question">How important is orgasm to your satisfaction?</h3><div class="card-tips"><strong>💡 Tips:</strong> If you can't answer right away, agree to revisit later-sometimes insights take time.</div></div></div></div>
+    </div>
+    
+    <div class="footer">
+        <h3>BEDROOM CONVERSATION & ADVENTURE CARDS</h3>
+        <p>Made with ❤️ for deeper connections</p>
+        <p style="margin-top: 10px; font-size: 12px;">© Maxed Out Man • MaxedOutMan.com</p>
+    </div>
+    
+    <script>
+        // Get elements
+        const searchBar = document.getElementById('searchBar');
+        const cardsGrid = document.getElementById('cardsGrid');
+        const cardItems = cardsGrid.querySelectorAll('.card-item');
+        
+        // Current filters
+        let currentIntensityFilter = 'all';
+        let currentTypeFilter = 'all-types';
+        
+        // Filter functionality
+        function applyFilters() {
+            const searchTerm = searchBar.value.toLowerCase();
+            let visibleCount = 0;
+            
+            cardItems.forEach(card => {
+                const intensity = card.getAttribute('data-intensity');
+                const type = card.getAttribute('data-type');
+                const searchData = card.getAttribute('data-search');
+                
+                let showByIntensity = currentIntensityFilter === 'all' || intensity === currentIntensityFilter;
+                let showByType = currentTypeFilter === 'all-types' || type === currentTypeFilter;
+                let showBySearch = searchTerm === '' || searchData.includes(searchTerm);
+                
+                if (showByIntensity && showByType && showBySearch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            
+            updateHeader(visibleCount);
+        }
+        
+        function updateHeader(count) {
+            const header = document.getElementById('collectionHeader');
+            if (currentIntensityFilter !== 'all' || currentTypeFilter !== 'all-types' || searchBar.value) {
+                let headerText = 'FILTERED RESULTS';
+                if (currentTypeFilter !== 'all-types') {
+                    headerText = currentTypeFilter === 'Conversation' ? 'TALK ABOUT IT CARDS' : 'ADVENTURE CARDS';
+                }
+                if (currentIntensityFilter !== 'all') {
+                    const intensityLabels = {
+                        'Gentle': 'SWEET & SIMPLE',
+                        'Warming': 'BUILDING HEAT',
+                        'Steamy': 'ADVENTURE TIME',
+                        'Fire': 'ADVANCED PLAY'
+                    };
+                    headerText = intensityLabels[currentIntensityFilter] + ' ' + 
+                        (currentTypeFilter !== 'all-types' ? (currentTypeFilter === 'Conversation' ? 'TALK' : 'ADVENTURE') : 'CARDS');
+                }
+                header.textContent = headerText + ' (' + count + ')';
+            } else {
+                header.textContent = 'YOUR COMPLETE COLLECTION';
+            }
+        }
+        
+        // Add event listeners to filter buttons
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const filterType = this.getAttribute('data-filter-type');
+                const filterValue = this.getAttribute('data-filter');
+                
+                if (filterType === 'intensity') {
+                    // Update intensity filter
+                    document.querySelectorAll('.filter-btn[data-filter-type="intensity"]').forEach(btn => {
+                        btn.classList.remove('active', 'gentle', 'warming', 'steamy', 'fire');
+                    });
+                    this.classList.add('active');
+                    currentIntensityFilter = filterValue;
+                    
+                    // Add color class
+                    if (filterValue === 'Gentle') this.classList.add('gentle');
+                    if (filterValue === 'Warming') this.classList.add('warming');
+                    if (filterValue === 'Steamy') this.classList.add('steamy');
+                    if (filterValue === 'Fire') this.classList.add('fire');
+                } else if (filterType === 'type') {
+                    // Update type filter
+                    document.querySelectorAll('.filter-btn[data-filter-type="type"]').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    currentTypeFilter = filterValue;
+                }
+                
+                applyFilters();
+            });
+        });
+        
+        searchBar.addEventListener('input', applyFilters);
+    </script>
+</body>
+</html>
